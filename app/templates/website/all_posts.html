@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<meta name="description" content="devtegrate - All Posts">
+{% endblock %}
+{% block title %}Travel posts{% endblock %}
+
+{% block content %}
+<style>
+/* Page Title */
+.ALL-h1 {
+    font-size: 2.5rem !important;
+    margin: 40px 0 !important;
+    color: #1a202c !important;
+}
+
+/* Blog Card */
+.row.no-gutters {
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    overflow: hidden !important;
+    transition: transform 0.3s ease !important;
+}
+
+.row.no-gutters:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Card Image */
+.card-img {
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px 0 0 12px !important;
+}
+
+/* Card Content */
+.card-body {
+    padding: 2rem !important;
+}
+
+.card-title {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: #2d3748 !important;
+    margin-bottom: 1rem !important;
+}
+
+.card-text {
+    color: #4a5568 !important;
+    line-height: 1.6 !important;
+}
+
+/* Read Button */
+.btn.ALL-green-btn {
+    background: #2563eb !important;
+    color: white !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 6px !important;
+    border: none !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn.ALL-green-btn:hover {
+    background: #1d4ed8 !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Author Info */
+.text-muted {
+    color: #718096 !important;
+    font-size: 0.9rem !important;
+}
+
+    </style>
+    <!-- Content -->
+    {% if chosen_theme == "": %}
+    <h1 class="ALL-special-font ALL-h1 text-center">All Blog Posts</h1>
+    {% else: %}
+    <h1 class="ALL-special-font ALL-h1 text-center">{{chosen_theme}}: Blog Posts</h1>
+    {% endif %}
+
+    <!-- Cards: all posts-->
+    {% set i = 0 %}
+    {% for post in all_blog_posts: %}
+    {% set i = i + 1 %}
+    <section class="container-fluid mt-4">
+        <div class="row justify-content-center">
+            <div class="row no-gutters" style="width: 57rem;">
+                <div class="col-md-6 card-img ALL-picture ">
+                        {% if post.picture_h %}
+                            <img src="{{ url_for('static', filename='Pictures_Posts/'+post.picture_h) }}" class="card-img" alt="Blog post image">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='Pictures_Posts/default_post_image.jpg') }}" class="card-img" alt="Default blog post image">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text text-justify">{{ intros[i] }}</p>
+                        <a role="button" href="{{ url_for('website.blog_post', index=post.id) }}" class="btn ALL-green-btn mb-2" style="width: 150px;">Read</a>
+                        <p class="card-text"><small class="text-muted"> by {{ post.author.name }} - {{ post.date_to_post.strftime('%d %B %Y') }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+
+{% endblock %}

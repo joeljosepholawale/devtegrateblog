@@ -1,0 +1,22 @@
+{% extends "account/dashboard_admin.html" %}
+{% block page %}
+<div class="container">
+    <h2>Create New Category</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="theme_name" class="form-label">Category Name</label>
+            <input type="text" class="form-control" id="theme_name" name="theme_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="theme_image" class="form-label">Category Image</label>
+            <input type="file" class="form-control" id="theme_image" name="theme_image" required>
+        </div>
+        <div class="mb-3">
+            <label for="image_source" class="form-label">Image Source (optional)</label>
+            <input type="text" class="form-control" id="image_source" name="image_source">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Category</button>
+        <a href="{{ url_for('dashboard.manage_themes') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
