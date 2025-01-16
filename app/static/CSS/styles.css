@@ -174,3 +174,33 @@ html, body {
     border: none;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+/* Custom Toggle Button Styling */
+.navbar-toggler {
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Toggle Animation */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    transform: rotate(90deg);
+}
+.dropdown-toggle .bi-caret-down-fill {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle[aria-expanded="true"] .bi-caret-down-fill {
+    transform: rotate(180deg);
+}
