@@ -257,7 +257,6 @@ input[type=file]::file-selector-button {
     padding: 0 !important;
 }
 
-/* filter colour from: https: //codepen.io/sosuke/pen/Pjoqqp*/
 .ALL-grey{
     color: #808080;
     filter: invert(55%) sepia(0%) saturate(0%) hue-rotate(24deg) brightness(91%) contrast(84%);
@@ -287,5 +286,4 @@ input[type=file]::file-selector-button {
         filter: invert(12%) sepia(57%) saturate(5140%) hue-rotate(4deg) brightness(92%) contrast(101%);
     }
 }
-
 
