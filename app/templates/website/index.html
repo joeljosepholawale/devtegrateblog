@@ -6,6 +6,184 @@
 {% block title %}Devtegrate - Cloud Solutions & Digital Excellence{% endblock %}
 
 {% block content %}
+<style>
+    /* Blog post container */
+    .blog-post-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    
+    /* Featured image */
+    .blog-hero-image {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    
+    /* Post header */
+    .post-header {
+        margin: 2rem 0;
+    }
+    
+    .post-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+    
+    .post-meta {
+        display: flex;
+        gap: 1rem;
+        color: #666;
+    }
+    
+    /* Post content */
+    .post-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    /* Comments section */
+    .comments-section {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #eee;
+    }
+    
+    /* Responsive breakpoints */
+    @media (max-width: 1200px) {
+        .blog-post-container {
+            padding: 1.5rem;
+        }
+        
+        .blog-hero-image {
+            height: 400px;
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .post-title {
+            font-size: 2rem;
+        }
+        
+        .blog-hero-image {
+            height: 350px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .blog-post-container {
+            padding: 1rem;
+        }
+        
+        .blog-hero-image {
+            height: 300px;
+        }
+        
+        .post-title {
+            font-size: 1.8rem;
+        }
+        
+        .post-content {
+            font-size: 1rem;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .blog-hero-image {
+            height: 250px;
+        }
+        
+        .post-meta {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .post-title {
+            font-size: 1.5rem;
+        }
+    }
+    .btn.ALL-green-btn {
+    background: #007bff !important;
+    color: white !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 6px !important;
+    border: none !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+}
+
+.btn.ALL-green-btn:hover {
+    background: #007bff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3) !important;
+}
+
+.btn.ALL-green-btn:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+.row.no-gutters {
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    overflow: hidden !important;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    margin-bottom: 2rem !important;
+}
+
+.row.no-gutters:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15) !important;
+}
+
+.card-img {
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px 0 0 12px !important;
+    transition: transform 0.6s ease-in-out !important;
+}
+
+.row.no-gutters:hover .card-img {
+    transform: scale(1.05) !important;
+}
+
+.card-body {
+    padding: 2rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.card-title {
+    transform: translateY(0);
+    transition: transform 0.4s ease !important;
+}
+
+.row.no-gutters:hover .card-title {
+    transform: translateY(-4px) !important;
+}
+
+.btn.ALL-green-btn {
+    opacity: 0.9;
+    transition: all 0.4s ease !important;
+}
+
+.row.no-gutters:hover .btn.ALL-green-btn {
+    opacity: 1;
+    transform: translateY(-2px) !important;
+}
+
+    </style>
+    
 <!-- Main image -->
 <div class="ctn-section-header">
     <img class="ctn-img" src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg" alt="Devtegrate Cloud Technology">
@@ -43,49 +221,46 @@
 </section>
 
 {% for theme_index in range(posts_themes|length) %}
-    {% set current_theme = posts_themes[theme_index][0] %}
-    <section class="container-fluid mt-4 {% if theme_index % 2 != 0 %}HOME-backg{% endif %}">
-        {% if theme_index == 0 %}
-            <center><h3>Latest Tech Insights</h3></center><br>
-        {% endif %}
-        <div class="row justify-content-center">
-            {% for post in posts_all %}
-                {% if post.theme_group.theme == current_theme %}
-                    <div class="col col-auto mb-3">
-                        <a class="ALL-no-hover" href="{{ url_for('website.blog_post', index=post.id) }}">
-                            <div class="card h-100 HOME-card ALL-post-hover" style="width: {% if theme_index == 3 %}27.9rem{% else %}18rem{% endif %}">
-                                {% set post_image = 'Pictures_Posts/default_post_image.jpg' %}
-                                {% if post.picture_v %}
-                                    {% set post_image = 'Pictures_Posts/' + post.picture_v %}
-                                {% elif post.picture_h %}
-                                    {% set post_image = 'Pictures_Posts/' + post.picture_h %}
-                                {% elif post.picture_s %}
-                                    {% set post_image = 'Pictures_Posts/' + post.picture_s %}
-                                {% endif %}
-                                <img src="{{ url_for('static', filename=post_image) }}" 
-                                     class="card-img-top" 
-                                     alt="{{ post.picture_alt or 'Blog post image' }}" />
-                                
-                                {% if theme_index == 3 and post.id in forth_theme_post_ids %}
-                                    <div class="card-img-overlay {% if post.id == forth_theme_post_ids[1] %}d-flex flex-column justify-content-end{% endif %}">
-                                        <h5 class="card-title HOME-txt-background ALL-no-hover">{{ post.title }}</h5>
-                                        <p class="card-text HOME-txt-background ALL-no-hover">by {{ post.author.name }}</p>
-                                    </div>
-                                {% else %}
-                                    <div class="card-body">
-                                        <h5 class="card-title ALL-no-hover">{{ post.title }}</h5>
-                                    </div>
-                                    <div class="card-footer HOME-card-footer">
-                                        <small class="text-muted ALL-no-hover">by {{ post.author.name }}</small>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        </a>
-                    </div>
+{% set current_theme = posts_themes[theme_index][0] %}
+
+<section class="container-fluid mt-4">
+    {% if theme_index == 0 %}
+    <h1 class="ALL-special-font ALL-h1 text-center">Latest Blog Insights</h1>
+    {% endif %}
+
+    {% for post in posts_all %}
+    {% if post.theme_group.theme == current_theme %}
+    <div class="row justify-content-center">
+        <div class="row no-gutters" style="width: 57rem;">
+            <div class="col-md-6 card-img ALL-picture">
+                {% set post_image = 'Pictures_Posts/default_post_image.jpg' %}
+                {% if post.picture_h %}
+                    {% set post_image = 'Pictures_Posts/' + post.picture_h %}
                 {% endif %}
-            {% endfor %}
+                <img src="{{ url_for('static', filename=post_image) }}" 
+                     class="card-img" 
+                     alt="{{ post.picture_alt or 'Blog post image' }}">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text text-justify">{{ post.intro }}</p>
+                    <a role="button" 
+   href="{{ url_for('website.blog_post', index=post.id) }}" 
+   class="btn ALL-green-btn mb-2" 
+   style="width: 150px;">Read More</a>
+
+                    <p class="card-text">
+                        <small class="text-muted">by {{ post.author.name }}</small>
+                    </p>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+    {% endif %}
+    {% endfor %}
+</section>
 {% endfor %}
+
 
 {% endblock %}
