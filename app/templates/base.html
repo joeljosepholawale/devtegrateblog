@@ -152,8 +152,9 @@
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light HOME-nav" id="dtgrate">
-        <div class="container">
-        <img class="navbar-brand" src="https://res.cloudinary.com/quinn-daisies/image/upload/v1720531159/devtegrate-images/Asset_5_ujcfae.svg" width="180px" alt="logo">
+        <div class="container"><a href="{{ url_for('website.home') }}">
+            <img class="navbar-brand" src="https://res.cloudinary.com/quinn-daisies/image/upload/v1720531159/devtegrate-images/Asset_5_ujcfae.svg" width="180px" alt="logo">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon" id="tog"></span>
@@ -189,6 +190,9 @@
                         <img src="{{ url_for('static', filename='Pictures_Users/'+current_user.picture) }}" class="rounded-circle mr-1" height="20"
                             alt="User" loading="lazy" />
                         {{ current_user.name }} 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill ms-1" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                        </svg>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ url_for('account.dashboard')}}">Dashboard</a>
